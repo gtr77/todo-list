@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import TasksComponent from "./components/Tasks";
 import CheckBoxComponent from "./components/CheckBox";
-// import Card from "./Card";
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import './App.scss';
 
 
@@ -62,7 +62,7 @@ const App = () => {
 
   const style = {
     textDecoration: "line-through",
-    color: "red"
+    backgroundColor: "#50c4a7"
   }
   const showItemStyles = {
     display: "block"
@@ -78,8 +78,10 @@ const App = () => {
           <h1>Todo List</h1>
         </div>
         <div className='todolist__container'>
-          <input className='todolist__textbox' type="text" value={text} onChange={searchChange}/>
-          <button className='todolist__btn' onClick={addTask}>Add Task</button>
+          <input className='todolist__container__textbox' type="text" value={text} onChange={searchChange}/>
+          <button className='todolist__container__btn' onClick={addTask}>
+            <AddCircleTwoToneIcon color="primary"/>
+          </button>
         </div>
         <div className='todolist__taskscontainer'>
           <ul>
@@ -90,11 +92,12 @@ const App = () => {
                   <input className='todolist__edititem' style={showEditBtn ? showItemStyles : hideItemStyles} type="text" onChange={editChange} defaultValue={task.taskName} />
                 );
                 const ItemTask = (
-                  <li className='todolist__task' style={isCompleted ? style : null}> {task.taskName} <b>Status</b>: {isCompleted ? 'Done ' : 'To do '} </li>
+                  // <li className='todolist__task' style={isCompleted ? style : null}> {task.taskName} <b>Status</b>: {isCompleted ? 'Done ' : 'To do '} </li>
+                  <li className='todolist__task'> {task.taskName} </li>
                 )
 
                 return (
-                  <div className='todolist__tasks'>
+                  <div className='todolist__tasks' style={isCompleted ? style : null}>
                     <CheckBoxComponent 
                       completed={isCompleted}
                       currentIndex={idx}
